@@ -17,6 +17,9 @@ def loadPicsList(dir):
 pics_dir = "/mnt/c/Users/AS/Pictures/America Ship 3D/"
 
 pics = loadPicsList(pics_dir)
-print(pics[0].getHeader())
-
+test_pic_header = pics[0].getHeader()
+print(test_pic_header['Image Name'])
+print(test_pic_header['gps_latitude'])
+print(pics[0].getLat())
+print(pics[0].getLong())
 
