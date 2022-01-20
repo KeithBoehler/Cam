@@ -9,7 +9,16 @@ Precond:    Files must be on disk. To initialize a string to the folder
 Postcond:   Internal file handle to interact with the exif data of the 
             supplied image. 
 
-Bugs:
+Bugs:       From Ipython testing i feel the img.get_all() maye miss some things
+            based on some returned messages like: 
+            'unable to read tag '_interoperability_ifd_Pointer'
+            Tho from opening a single image and looking at its metadata 
+            both with python and web reader said feilds are not present
+            
+            I find it strange as https://gitlab.com/TNThieding/exif/-/blob/master/src/exif/_image.py
+            makes the all_tags dict from the list_all() func
+            
+            
 '''
 from exif import Image
 
@@ -27,7 +36,7 @@ class THREE_D_META:
         with open(self.__img_path, 'rb') as image_file:
             working_img_h = Image(image_file)
         
-        self.metadata = working_img_h.list_all()
+        self.metadata = working_img_h.get_all()
 
     def getImageDir(self):
         return self.__img_dir
@@ -37,6 +46,9 @@ class THREE_D_META:
         
     def getHeader(self):
         return self.metadata
+        
+    def getWorkingHandel(self):
+        return self.__working_img_h
 
 
 
