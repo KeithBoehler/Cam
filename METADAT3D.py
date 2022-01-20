@@ -37,6 +37,7 @@ class THREE_D_META:
             working_img_h = Image(image_file)
         
         self.metadata = working_img_h.get_all()
+        self.metadata.update({'Image Name' : img_name})
 
     def getImageDir(self):
         return self.__img_dir
