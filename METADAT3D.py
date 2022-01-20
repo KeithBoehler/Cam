@@ -50,7 +50,16 @@ class THREE_D_META:
         
     def getWorkingHandel(self):
         return self.__working_img_h
+        
+    def getLat(self):
+        return self.metadata['gps_latitude']
+    
+    def getLong(self):
+        return self.metadata['gps_longitude']
 
 
-
+    
+    
+    
+    
     
