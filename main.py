@@ -2,6 +2,7 @@ import os
 from METADAT3D import THREE_D_META
 
 
+
 def loadPicsList(dir):    
     """ Get the pics from disk to mem
     :param dir: The parth to the folder with the 3d images of interest.     
@@ -16,6 +17,6 @@ def loadPicsList(dir):
 pics_dir = "/mnt/c/Users/AS/Pictures/America Ship 3D/"
 
 pics = loadPicsList(pics_dir)
-print(pics)
+print(pics[0].getHeader())
 
 
