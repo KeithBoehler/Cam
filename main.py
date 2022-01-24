@@ -18,8 +18,10 @@ pics_dir = "/mnt/c/Users/AS/Pictures/America Ship 3D/"
 
 pics = loadPicsList(pics_dir)
 test_pic_header = pics[0].getHeader()
-print(test_pic_header['Image Name'])
-print(test_pic_header['gps_latitude'])
-print(pics[0].getLat())
-print(pics[0].getLong())
 
+dats = []
+for i in range(len(pics)):
+    tmp = [pics[i].getImageName(), pics[i].getLat(), pics[i].getLong()]
+    dats.append(tmp)
+    
+print(dats)
