@@ -56,6 +56,9 @@ class THREE_D_META:
     
     def getLong(self):
         return self.metadata['gps_longitude']
+    
+    def getImageName(self):
+        return self.metadata['Image Name']
 
 
     
