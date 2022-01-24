@@ -13,15 +13,19 @@ def loadPicsList(dir):
         pics_list[i] = pic
     return pics_list
 
+def prepPlot(pics_list):
+    """ Trim down the data in meme to min needed for plotting
+    :param pics_list: The metadata of images loaded into mem from loadPicsList()
+    """
+    dats = []
+    for i in range(len(pics)):
+        tmp = [pics[i].getImageName(), pics[i].getLat(), pics[i].getLong()]
+        dats.append(tmp) 
+    return dats
    
 pics_dir = "/mnt/c/Users/AS/Pictures/America Ship 3D/"
 
 pics = loadPicsList(pics_dir)
-test_pic_header = pics[0].getHeader()
+pics = prepPlot(pics)
 
-dats = []
-for i in range(len(pics)):
-    tmp = [pics[i].getImageName(), pics[i].getLat(), pics[i].getLong()]
-    dats.append(tmp)
-    
-print(dats)
+
