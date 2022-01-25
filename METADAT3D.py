@@ -60,9 +60,33 @@ class THREE_D_META:
     def getImageName(self):
         return self.metadata['Image Name']
 
-
+    def getLatRef(self):
+        return self.metadata['gps_latitude_ref']
     
+    def getLongRef(self):
+        return self.metadata['gps_longitude_ref']
     
-    
+    def dms2Decimal(self):
+        """ 
+        precond: Have succesfully run init
+        postcond: Metadata attribute of latitude and longitude will be updated to
+                    show their values in decimal rather than degrees.
+        """
+        dms_degree_lat = self.getLat()
+        dms_degree_lat_ref = self.getLatRef()
+        dms_degree_long = self.getLong()
+        dms_degree_long_ref = self.getLatRef()
+        #               hour                  minute                          seconds
+        decimal_lat = dms_degree_lat[0] + dms_degree_lat[1] / 60 + dms_degree_lat[2] / 3600
+        decimal_long = dms_degree_long[0] + dms_degree_long[1] / 60 + dms_degree_long[2] / 3600
+        
+        if dms_degree_lat_ref == 'S':
+            decimal_lat = -decimal_lat
+        
+        if dms_degree_long_ref == 'W':
+            decimal_long = -decimal_long
+        
+        self.metadata['gps_latitude'] = decimal_lat
+        self.metadata['gps_longitude'] = decimal_long
     
     
