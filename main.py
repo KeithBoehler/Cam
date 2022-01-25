@@ -1,5 +1,7 @@
 import os
 from METADAT3D import THREE_D_META
+import numpy as np
+import matplotlib.pyplot as plt
 
 def loadPicsList(dir):    
     """ Get the pics from disk to mem
@@ -42,15 +44,23 @@ def mapBounderies(dat):
         longs[i] = dat[i][2]
     lats.sort()
     longs.sort()
-    boundry_box = (longs(0), longs(len(longs)-1), lats(0), lats(len(lats)-1))
-    return boundry_box
+    boundry_box = [longs[0], longs[len(longs)-1], lats[0], lats[len(lats)-1]]
+    return boundry_box, lats, longs
 
     
 pics_dir = "/mnt/c/Users/AS/Pictures/America Ship 3D/"
 
 pics = loadPicsList(pics_dir)
 pics = prepPlot(pics)
+b, lats, longs = mapBounderies(pics)
+map = plt.imread("/mnt/c/Users/AS/src/Cam/data/map.png")
+print(b)
 
-lats = pics[::][:1]
+fig, ax = plt.subplots()
+ax.scatter(longs, lats)
 print(lats)
+ax.set_title("AS 3d Tour")
+ax.set_xlim(b[0], b[1])
+ax.set_ylim(b[2], b[3])
 
+ax.imshow(map, zorder=0, extent = b, aspect='equal')

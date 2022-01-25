@@ -21,6 +21,7 @@ Bugs:       From Ipython testing i feel the img.get_all() maye miss some things
             
 '''
 from exif import Image
+import time
 
 class THREE_D_META:
     metadata = dict()
@@ -38,6 +39,12 @@ class THREE_D_META:
         
         self.metadata = working_img_h.get_all()
         self.metadata.update({'Image Name' : img_name})
+        '''
+        for key in self.metadata:
+            print(self.metadata[key])
+            
+        print(self.metadata['gps_longitude_ref'])
+        time.sleep(30)'''
 
     def getImageDir(self):
         return self.__img_dir
@@ -47,10 +54,7 @@ class THREE_D_META:
         
     def getHeader(self):
         return self.metadata
-        
-    def getWorkingHandel(self):
-        return self.__working_img_h
-        
+    
     def getLat(self):
         return self.metadata['gps_latitude']
     
@@ -75,16 +79,16 @@ class THREE_D_META:
         dms_degree_lat = self.getLat()
         dms_degree_lat_ref = self.getLatRef()
         dms_degree_long = self.getLong()
-        dms_degree_long_ref = self.getLatRef()
+        dms_degree_long_ref = self.getLongRef()
         #               hour                  minute                          seconds
         decimal_lat = dms_degree_lat[0] + dms_degree_lat[1] / 60 + dms_degree_lat[2] / 3600
         decimal_long = dms_degree_long[0] + dms_degree_long[1] / 60 + dms_degree_long[2] / 3600
         
-        if dms_degree_lat_ref == 'S':
-            decimal_lat = -decimal_lat
+        if dms_degree_lat_ref == "S":
+            decimal_lat = -1*decimal_lat
         
-        if dms_degree_long_ref == 'W':
-            decimal_long = -decimal_long
+        if dms_degree_long_ref == "W":
+            decimal_long = -1*decimal_long
         
         self.metadata['gps_latitude'] = decimal_lat
         self.metadata['gps_longitude'] = decimal_long
