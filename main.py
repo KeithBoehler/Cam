@@ -45,22 +45,30 @@ def mapBounderies(dat):
     lats.sort()
     longs.sort()
     boundry_box = [longs[0], longs[len(longs)-1], lats[0], lats[len(lats)-1]]
+    for i in range(len(boundry_box)):
+        boundry_box[i] = 1.0 * boundry_box[i]
     return boundry_box, lats, longs
 
     
-pics_dir = "/mnt/c/Users/AS/Pictures/America Ship 3D/"
+pics_dir = "/mnt/c/Users/AS/src/Cam/data/America Ship 3D 3/"
 
 pics = loadPicsList(pics_dir)
 pics = prepPlot(pics)
 b, lats, longs = mapBounderies(pics)
-map = plt.imread("/mnt/c/Users/AS/src/Cam/data/map.png")
-print(b)
+map = plt.imread("/mnt/c/Users/AS/src/Cam/data/map set 3.png")
+
+print("The boundry ",b)
+print("Lats", lats)
+print("Longs", longs)
+print("Pics in dataset", len(longs))
 
 fig, ax = plt.subplots()
-ax.scatter(longs, lats)
-print(lats)
-ax.set_title("AS 3d Tour")
+ax.scatter(longs, lats, zorder=1,alpha=0.2,c='b',s=10)
+ax.set_title(" AS 3d Tour ")
+ax.set_xlabel("longitude")
+ax.set_ylabel("latitude")
 ax.set_xlim(b[0], b[1])
 ax.set_ylim(b[2], b[3])
 
 ax.imshow(map, zorder=0, extent = b, aspect='equal')
+plt.savefig("matplotlib.png")
