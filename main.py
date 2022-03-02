@@ -1,6 +1,6 @@
 import os
 from METADAT3D import THREE_D_META
-from GraphingNodes import GraphingNodes
+from GraphingNodes import TourNodes
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -63,9 +63,9 @@ z = pics['R0012397.JPG']
 
 print( id(x) == id((pics['R0012395.JPG'])))
 
-test_node = GraphingNodes(x)
-test_node2 = GraphingNodes(y)
-test_node3 = GraphingNodes(z)
+test_node = TourNodes(x)
+test_node2 = TourNodes(y)
+test_node3 = TourNodes(z)
 print(type(test_node))
 test_node.showActiveNode()
 test_node.addNeighbor(y)
