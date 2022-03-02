@@ -1,5 +1,6 @@
 import os
 from METADAT3D import THREE_D_META
+from GraphingNodes import GraphingNodes
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -55,8 +56,22 @@ def mapBounderies(dat):
 pics_dir = "/mnt/c/Users/AS/src/Cam/data/America Ship 3D 3/"
 
 pics = loadPicsList(pics_dir)
-print(pics['R0012395.JPG'].showMeta())
-#roster(pics)
+print(type(pics['R0012395.JPG']))
+x = pics['R0012395.JPG']
+y = pics['R0012396.JPG']
+z = pics['R0012397.JPG']
+
+print( id(x) == id((pics['R0012395.JPG'])))
+
+test_node = GraphingNodes(x)
+test_node2 = GraphingNodes(y)
+test_node3 = GraphingNodes(z)
+print(type(test_node))
+test_node.showActiveNode()
+test_node.addNeighbor(y)
+test_node.addNeighbor(z)
+test_node.showNeighborhood()
+
 
 '''
 pics = prepPlot(pics)
