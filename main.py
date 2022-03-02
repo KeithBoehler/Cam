@@ -6,23 +6,23 @@ import matplotlib.pyplot as plt
 def loadPicsList(dir):    
     """ Get the pics from disk to mem
     :param dir: The parth to the folder with the 3d images of interest.     
-    precond:
-    postcond:
+    precond: have images on disk. 
+    postcond: metadata of images on disk is now loaded into mem
     """ 
     pics_list = os.listdir(dir)
+    pics_dict = dict()
     for i in range(len(pics_list)):
         pic = THREE_D_META(dir, pics_list[i])
-        pics_list[i] = pic
-        pics_list[i].dms2Decimal()
-    return pics_list
+        pics_dict.update({pic.getImageName(): pic})
+    return pics_dict
 
 def prepPlot(pics_list):
-    """ Trim down the data in meme to min needed for plotting
+    """ Trim down the data in mem to min needed for plotting
     :param pics_list: The metadata of images loaded into mem from loadPicsList()
                         Names will be index 0, latitude index 1 and longitude index 2
                         for lat reference 3 and long reference 4
-    precond: 
-    postcond: 
+    precond: have metadata loaded into mem
+    postcond: reduced metadata to min needed for ploting
     """
     dats = []
     for i in range(len(pics)):
@@ -49,18 +49,25 @@ def mapBounderies(dat):
         boundry_box[i] = 1.0 * boundry_box[i]
     return boundry_box, lats, longs
 
-    
+
+
+  
 pics_dir = "/mnt/c/Users/AS/src/Cam/data/America Ship 3D 3/"
 
 pics = loadPicsList(pics_dir)
+print(pics['R0012395.JPG'].showMeta())
+#roster(pics)
+
+'''
 pics = prepPlot(pics)
 b, lats, longs = mapBounderies(pics)
-map = plt.imread("/mnt/c/Users/AS/src/Cam/data/map set 3.png")
+map = plt.imread("/mnt/c/Users/AS/src/Cam/data/map.png")
 
 print("The boundry ",b)
 print("Lats", lats)
 print("Longs", longs)
 print("Pics in dataset", len(longs))
+
 
 fig, ax = plt.subplots()
 ax.scatter(longs, lats, zorder=1,alpha=0.2,c='b',s=10)
@@ -71,4 +78,4 @@ ax.set_xlim(b[0], b[1])
 ax.set_ylim(b[2], b[3])
 
 ax.imshow(map, zorder=0, extent = b, aspect='equal')
-plt.savefig("matplotlib.png")
+plt.savefig("matplotlib.png")'''
