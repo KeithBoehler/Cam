@@ -26,6 +26,8 @@ class TourNodes:
     """
         self.__neighbor_nodes.update({adjacent_node.getImageName(): adjacent_node})
     
+    def getNeigborhood(self):
+        return __neighbor_nodes
     
     
     # some debuging methods
