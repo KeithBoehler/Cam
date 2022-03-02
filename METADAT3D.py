@@ -21,13 +21,14 @@ Bugs:       From Ipython testing i feel the img.get_all() maye miss some things
             
 '''
 from exif import Image
+import pprint
 import time
 
 class THREE_D_META:
     metadata = dict()
     __img_dir = "/path/to/files/"
-    __img_name = "3dpic.jpg"
-    __img_path = " " 
+    __img_name = "3dpic.jpg.unset"
+    __img_path = "unset" 
 
     def __init__(self, folder_path, img_name):
         self.__img_dir = folder_path
@@ -61,8 +62,8 @@ class THREE_D_META:
     def getLong(self):
         return self.metadata['gps_longitude']
     
-    def getImageName(self):
-        return self.metadata['Image Name']
+   # def getImageName(self):
+    #    return self.metadata['Image Name']
 
     def getLatRef(self):
         return self.metadata['gps_latitude_ref']
@@ -92,5 +93,7 @@ class THREE_D_META:
         
         self.metadata['gps_latitude'] = decimal_lat
         self.metadata['gps_longitude'] = decimal_long
-    
+        
+    def showMeta(self):
+        pprint.pprint(self.metadata)
     
