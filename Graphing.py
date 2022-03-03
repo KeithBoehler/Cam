@@ -36,6 +36,11 @@ class Graphing:
         self.__nodes_dict.update(new_spot)
 
     def moveLocation(self):
+        """ 
+        precond: Tour is set up
+        postcond: attribute __tour_guide_location will be updated to a new node. Node travel must be valid
+        that is next to the current (is the new one a neighbor of current)
+        """
         possible_moves = self.__tour_guide_location.getNeigborhood()
         i = 0
         tmp = dict()
