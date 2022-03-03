@@ -1,6 +1,7 @@
 import os
 from METADAT3D import THREE_D_META
 from GraphingNodes import TourNodes
+from Graphing import Graphing
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -71,6 +72,14 @@ test_node.showActiveNode()
 test_node.addNeighbor(y)
 test_node.addNeighbor(z)
 test_node.showNeighborhood()
+
+as_nodes = {'R0012395.JPG' : test_node,
+            'R0012396.JPG' : test_node2,
+            'R0012397.JPG' : test_node3 }
+graph = Graphing(as_nodes, test_node)
+print("Current Location: ", graph.getTourLocation())
+graph.moveLocation()
+print("Updated: ", graph.getTourLocation())
 
 
 '''
