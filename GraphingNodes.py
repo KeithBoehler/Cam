@@ -27,7 +27,7 @@ class TourNodes:
         self.__neighbor_nodes.update({adjacent_node.getImageName(): adjacent_node})
     
     def getNeigborhood(self):
-        return __neighbor_nodes
+        return self.__neighbor_nodes
     
     
     # some debuging methods
@@ -36,5 +36,8 @@ class TourNodes:
         
     def showNeighborhood(self):
         pprint(self.__neighbor_nodes)
+        
+    def whoAmI(self):
+        return self.active_node.getImageName()
 
 
