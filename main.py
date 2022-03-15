@@ -4,6 +4,7 @@ from GraphingNodes import TourNodes
 from Graphing import Graphing
 import numpy as np
 import matplotlib.pyplot as plt
+import argparse 
 
 def loadPicsList(dir):    
     """ Get the pics from disk to mem
@@ -51,10 +52,11 @@ def mapBounderies(dat):
         boundry_box[i] = 1.0 * boundry_box[i]
     return boundry_box, lats, longs
 
-
-
+parser = argparse.ArgumentParser(description='Selecting images for a 3d tour.')
+parser.add_argument("-d", "--dir", help="Select directory contaning 3d images needed for tour. ")
+parse_dict = vars(parser.parse_args())  
   
-pics_dir = "/mnt/c/Users/AS/src/Cam/data/America Ship 3D 3/"
+pics_dir = parse_dict["dir"]# "/mnt/c/Users/AS/src/Cam/data/America Ship 3D 3/"
 
 pics = loadPicsList(pics_dir)
 print(type(pics['R0012395.JPG']))
@@ -80,7 +82,6 @@ graph = Graphing(as_nodes, test_node)
 print("Current Location: ", graph.getTourLocation())
 graph.moveLocation()
 print("Updated: ", graph.getTourLocation())
-
 
 '''
 pics = prepPlot(pics)
