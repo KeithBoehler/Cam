@@ -56,7 +56,7 @@ parser = argparse.ArgumentParser(description='Selecting images for a 3d tour.')
 parser.add_argument("-d", "--dir", help="Select directory contaning 3d images needed for tour. ")
 parse_dict = vars(parser.parse_args())  
   
-pics_dir = parse_dict["dir"]# "/mnt/c/Users/AS/src/Cam/data/America Ship 3D 3/"
+pics_dir = parse_dict["dir"] # select path given by user at cli
 
 pics = loadPicsList(pics_dir)
 print(type(pics['R0012395.JPG']))
